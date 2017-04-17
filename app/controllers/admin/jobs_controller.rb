@@ -43,9 +43,21 @@ class Admin::JobsController < ApplicationController
         redirect_to admin_jobs_path
     end
 
+    def publish
+        @job = Job.find(params[:id])
+        @job.publish!
+        redirect_to admin_jobs_path
+    end
+
+    def hide
+        @job = Job.find(params[:id])
+        @job.hide!
+        redirect_to admin_jobs_path
+    end
+
     private
 
     def job_params
-        params.require(:job).permit(:title, :description, :wage_lower_bound, :wage_upper_bound, :contact_email)
+        params.require(:job).permit(:title, :description, :wage_lower_bound, :wage_upper_bound, :contact_email, :is_hidden)
     end
 end
