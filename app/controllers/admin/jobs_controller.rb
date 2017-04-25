@@ -3,7 +3,7 @@ class Admin::JobsController < ApplicationController
     before_action :require_is_admin
     layout 'admin'
     def index
-        @jobs = Job.all
+        @jobs = current_user.jobs.all
     end
 
     def show
@@ -16,6 +16,7 @@ class Admin::JobsController < ApplicationController
 
     def create
         @job = Job.new(job_params)
+        @job.user = current_user
         if @job.save
             redirect_to admin_jobs_path
         else

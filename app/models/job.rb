@@ -15,4 +15,5 @@ class Job < ApplicationRecord
         save
     end
     has_many :resumes
+    belongs_to :user
 end
