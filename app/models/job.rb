@@ -14,4 +14,6 @@ class Job < ApplicationRecord
     end
     has_many :resumes
     belongs_to :user
+
+    mount_uploader :attachment, AttachmentUploader
 end

@@ -1,31 +1,41 @@
-<%=link_to("发布信息", new_admin_job_path(@job), class: "btn btn-primary pull-right")%>
-<table class="table table-boldered">
-    <thead>
-        <tr>
-            <th>发布的信息</th>
-            <th>回复数量</th>
-            <th>管理项目</th>
-            <th>更新时间</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @jobs.each do |job| %>
-            <tr>
-                <td>
-                    <%= render_job_status(job) %>
-                    <%=link_to(job.title,admin_job_path(job))%></td>
-                <td><%=link_to(job.resumes.count,admin_job_resumes_path(job) )%></td>
-                <td>
-                    <% if job.is_hidden %>
-                        <%= link_to("publish", publish_admin_job_path(job), method: :post, class: "btn btn-xs btn-default")%>
-                    <% else %>
-                        <%=link_to("hide", hide_admin_job_path(job), method: :post, class: "btn btn-xs btn-default")%>
-                    <% end %>
-                    <%= link_to("Edit", edit_admin_job_path(job))%>
-                    <%=link_to("Delete", admin_job_path(job), method: :delete, :data => {:confirm => "Are you sure?"})%>
-                </td>
-                <td><%= job.created_at %></td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-9">
+            <%=link_to("发布信息", new_admin_job_path(@job), class: "btn btn-success pull-right")%>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <table class="table table-boldered">
+                        <thead>
+                            <tr>
+                                <th>发布的信息</th>
+                                <th>回复数量</th>
+                                <th>管理项目</th>
+                                <th>更新时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @jobs.each do |job| %>
+                                <tr>
+                                    <td>
+                                        <%= render_job_status(job) %>
+                                        <%=link_to(job.title,admin_job_path(job))%></td>
+                                    <td><%=link_to(job.resumes.count,admin_job_resumes_path(job) )%></td>
+                                    <td>
+                                        <% if job.is_hidden %>
+                                            <%= link_to("显示", publish_admin_job_path(job), method: :post, class: "btn btn-xs btn-success")%>
+                                        <% else %>
+                                            <%=link_to("隐藏", hide_admin_job_path(job), method: :post, class: "btn btn-xs btn-warning")%>
+                                        <% end %>
+                                        <%= link_to("修改", edit_admin_job_path(job))%>
+                                        <%=link_to("删除", admin_job_path(job), method: :delete, :data => {:confirm => "Are you sure?"})%>
+                                    </td>
+                                    <td><%= job.created_at %></td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

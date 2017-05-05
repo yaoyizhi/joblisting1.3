@@ -1,3 +1,15 @@
-<h1>投递到<%= @job.title %>的履历</h1>
-<hr>
-<%= render :partial =>  "resume", :collection => @resumes, :as => :resume%>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-9">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><%= @job.title %> <i>的留言信息</i>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <%= render :partial =>  "resume", :collection => @resumes, :as => :resume%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,18 +1,31 @@
-<table class="table table-boldered">
-    <tbody>
-        <thead>
-            <tr>
-                <td>发布的信息 </td>
-                <td>回复数量</td>
-                <td>更新时间</td>
-            </tr>
-        </thead>
-        <% @jobs.each do |job| %>
-            <tr>
-                <td><%=link_to(job.title, job_path(job))%></td>
-                <td><%= job.resumes.count %></td>
-                <td><%= job.created_at %></td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-lg-9">
+            <div class="panel  panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title ">发布的信息</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-boldered">
+                        <tbody>
+                            <thead>
+                                <tr>
+                                    <td>发布的信息 </td>
+                                    <td>回复数量</td>
+                                    <td>更新时间</td>
+                                </tr>
+                            </thead>
+                            <% @jobs.each do |job| %>
+                                <tr>
+                                    <td><%=link_to(job.title, job_path(job))%></td>
+                                    <td><%= job.resumes.count %></td>
+                                    <td><%= job.created_at %></td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
