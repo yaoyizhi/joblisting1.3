@@ -6,6 +6,11 @@ class User < ApplicationRecord
     def admin?
         is_admin
     end
+
+    def validate?
+        is_validate
+    end
+
     has_many :resumes
     has_many :jobs
 end

@@ -1,0 +1,7 @@
+<h1> 修改用户权限 </h1>
+<%= simple_form_for [:admin,@user] do |f|%>
+    <%= f.input :name %>
+    <%= f.input :adress%>
+    <%= f.input :is_validate %>
+    <%= f.submit 'Submit'%>
+<% end %>

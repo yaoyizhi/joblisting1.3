@@ -18,7 +18,8 @@
                         </a>
                         <ul class="dropdown-menu">
                             <% if current_user.admin? %>
-                                <li><%= link_to("发布信息管理页", admin_jobs_path)%></li>
+                                <li><%= link_to("信息管理页", admin_jobs_path)%></li>
+                                <li><%= link_to("用户管理页", admin_users_path)%></li>
                             <% end %>
                             <li><%= link_to("登出", destroy_user_session_path, method: :delete)%></li>
                         </ul>

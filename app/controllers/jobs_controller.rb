@@ -1,14 +1,7 @@
 class JobsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     def index
-        @jobs = case params[:order]
-                when 'by_lower_bound'
-                    Job.published.order('wage_lower_bound DESC')
-                when 'by_upper_bound'
-                    Job.published.order('wage_upper_bound DESC')
-                else
-                    Job.published.recent
-                end
+        @jobs = Job.all
     end
 
     def show
@@ -21,6 +14,7 @@ class JobsController < ApplicationController
 
     def create
         @job = Job.new(job_params)
+        @job.user = current_user
         if @job.save
             redirect_to jobs_path
         else
@@ -34,6 +28,7 @@ class JobsController < ApplicationController
 
     def update
         @job = Job.find(params[:id])
+
         if @job.update(job_params)
             redirect_to jobs_path
             flash[:notice] = 'Update Success'
@@ -44,6 +39,7 @@ class JobsController < ApplicationController
 
     def destroy
         @job = Job.find(params[:id])
+
         @job.destroy
         redirect_to jobs_path
     end
@@ -51,6 +47,6 @@ class JobsController < ApplicationController
     private
 
     def job_params
-        params.require(:job).permit(:title, :description, :wage_lower_bound, :wage_upper_bound, :contact_email)
+        params.require(:job).permit(:title, :description)
     end
 end

@@ -3,7 +3,13 @@
         <div class="col-xs-12 col-md-10 col-lg-9">
             <div class="panel  panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title ">发布的信息</h3>
+                    <% if current_user %>
+                        <% if !current_user.validate? %>
+                            <%= link_to("发信息前需提交认证",edit_user_path(current_user.id), class: "btn btn-success pull-right")%>
+                        <% else %>
+                            <%= link_to("发布信息",new_job_path, class: "btn btn-success pull-right")%>
+                        <% end %>
+                    <% end %>
                 </div>
                 <div class="panel-body">
                     <table class="table table-boldered">
